@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Brightness: 42.83
+    - _Brightness: 42
     - _BumpScale: 1
     - _CLAMPOUT: 0
     - _Cutoff: 0.5
@@ -68,7 +68,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Iterations: 1.5
+    - _Iterations: 2.5
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -77,10 +77,10 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StepSize: 130
-    - _Tile: 700
+    - _StepSize: 278.2
+    - _Tile: 699
     - _UVSec: 0
-    - _Volsteps: 16.1
+    - _Volsteps: 14.7
     - _ZWrite: 1
     - _Zoom: 800
     m_Colors:

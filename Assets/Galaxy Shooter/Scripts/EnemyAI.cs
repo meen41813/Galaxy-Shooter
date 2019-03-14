@@ -9,13 +9,13 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField]
     private float _speed = 5.0f;
-    // Start is called before the first frame update
+    private UIManager _uiManger;
+
     void Start()
     {
-        
+        _uiManger = GameObject.Find("Canvas").GetComponent<UIManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         //move down
@@ -37,6 +37,7 @@ public class EnemyAI : MonoBehaviour
             }
             Destroy(other.gameObject);
             Instantiate(_enemyExplosionPrefab, transform.position, Quaternion.identity);
+            _uiManger.updateScore();
             Destroy(this.gameObject);
         }
         else if(other.tag == "Player")

@@ -23,9 +23,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _fireRate = 0.23f;
     private float _canFire = 0f;
-    //fire rate = 0.25f
-    //canfire = has the amount of time between firing passed
-    //time.time
+    
 
     [SerializeField]
     private float _speedBoost = 2.5f;
@@ -33,16 +31,24 @@ public class Player : MonoBehaviour
     private float _speed = 5.0f;
 
     private UIManager _UIManager;
+    private GameManager _gameManager;
+    private SpawnManager _spawnManager;
 
     void Start()
     {
-        //current position = new position
-        transform.position = new Vector3(0, 0, 0);
+     
+        transform.position = new Vector3(0, -3.79f, 0);
 
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _UIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        if(_UIManager != null)
+        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        if (_UIManager != null)
         {
             _UIManager.updateLives(lives);
+        }
+        if(_spawnManager != null)
+        {
+            _spawnManager.StartSpawnRoutine();
         }
     }
 
@@ -97,7 +103,7 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, 4.18f, transform.position.z);
         }
-        else if (transform.position.x >= 8.6f)
+        if (transform.position.x >= 8.6f)
         {
             transform.position = new Vector3(-8.6f, transform.position.y, transform.position.z);
         }
@@ -123,6 +129,8 @@ public class Player : MonoBehaviour
         {
             Instantiate(_ExplosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+            _gameManager.gameOver = true;
+            _UIManager.showTitle();
         }
     }
 
