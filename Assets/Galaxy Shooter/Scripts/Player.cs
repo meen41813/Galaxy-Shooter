@@ -32,11 +32,18 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _speed = 5.0f;
 
-    // Start is called before the first frame update
+    private UIManager _UIManager;
+
     void Start()
     {
         //current position = new position
         transform.position = new Vector3(0, 0, 0);
+
+        _UIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        if(_UIManager != null)
+        {
+            _UIManager.updateLives(lives);
+        }
     }
 
     // Update is called once per frame
@@ -110,7 +117,9 @@ public class Player : MonoBehaviour
             return;
         }
         lives--;
-        if(lives < 1)
+        _UIManager.updateLives(lives);
+
+        if (lives < 1)
         {
             Instantiate(_ExplosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
